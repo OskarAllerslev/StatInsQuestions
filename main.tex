@@ -1,5 +1,12 @@
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
 
 \title{Opgaveløsninger StatIns}
 \author{Oskar Allerslev}
@@ -10,6 +17,58 @@
 \maketitle
 
 \section{Introduction}
+
+\subsection{Week 1 - sections 1.1  1.2  1.3 }
+\begin{itemize}
+    \item Exercise 1
+    \item Exercise 3
+    \item Exercise 4
+    \item Practical exercise 1
+    \item Practical exercise 2
+\end{itemize}
+
+\subsubsection{Exercise 1}
+Let $(Z_n)$ and $(W_n)$ be $R^p$-valued r.v. \\
+show that if $||Z_n - W_n|| = o_P(1)$ and $Z_n \overset{d}{\rightarrow} Z$  then also $W_n \overset{d}{\rightarrow} Z$
+
+\begin{proof} 
+We want to show that 
+\begin{align*}
+    \lim_{n \rightarrow} E f(W_n) = E f(W)
+\end{align*}
+We apply the triangle inequality
+\begin{align*}
+   \lim_{n\rightarrow \infty} E(f(W_n) - f(Z_n)) &\leq \lim_{n \rightarrow \infty} |E(f(W_n)) - E(f(Z_n))| + |E(f(Z_n)  - E(f(Z))|  \\
+   &= \lim_{n \rightarrow \infty}|E(f(W_n)) - E(f(Z_n))| + \lim_{n \rightarrow \infty}|E(f(Z_n)  - E(f(Z))|\\
+   &\overset{\dagger}{=}\lim_{n \rightarrow \infty}|E(f(W_n)) - E(f(Z_n))|\\ 
+   &=\lim_{n \rightarrow \infty}|E(f(W_n)- f(Z_n))|\\ 
+   &= \lim_{n\rightarrow \infty} E(| f(W_n) - f(Z_n)|1_{\{ || W_n - Z_n || \leq \delta \}} ) + E(|f(W_n) - f(Z_n)| 1_{\{ || W_n - Z_n || \leq \delta \}^c})\\
+   &\leq \lim_{n\rightarrow \infty} L \delta \underbrace{P(|| W_n - Z_n || \leq \delta )}_{ c\geq 0 }+ 2M \underbrace{P(|| W_n - Z_n || > \delta )}_{o_P(1)}\\
+   &= 0
+   \\
+\end{align*}
+Where definition 1.2 (convergence in distribution) has been used at $\dagger$. And the definition of Lipschitz continuity at *.
+\end{proof}
+
+\subsubsection{Exercise 3}
+Show that $\sqrt{n}(\mathbb{F}^{(n)}(t_1) - F(t_1), \dots, \mathbb{F}^{(n)}(t_M) - F(t_M)) \overset{d}{\rightarrow} \mathcal{N}(0, \Sigma) $
+\begin{proof}
+We recognize that we need to use the Glivenko-Cantelli. We note that $F: R \rightarrow R$ is a non-decreasing, bounded and RCLL.
+
+
+\end{proof}
+
+
+\subsubsection{Exercise 4}
+\textbf{a)}
+$Z$ is Pareto distributed with scale $\kappa > 0$ and shape $\alpha > 0 $ then $\bar{F}_Z(z) = (\kappa / z )^{\alpha}, z \geq \kappa$.
+Show that if $\alpha > 1 \Rightarrow e_F(u) = u / (\alpha -1), u \geq \kappa$ where $e_F(u) = E(Z-u \mid Z  > u)$. 
+\begin{proof}
+    
+\end{proof}
+
+
+
 
 
 
