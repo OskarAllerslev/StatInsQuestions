@@ -64,14 +64,53 @@ We recognize that we need to use the Glivenko-Cantelli. We note that $F: R \righ
 $Z$ is Pareto distributed with scale $\kappa > 0$ and shape $\alpha > 0 $ then $\bar{F}_Z(z) = (\kappa / z )^{\alpha}, z \geq \kappa$.
 Show that if $\alpha > 1 \Rightarrow e_F(u) = u / (\alpha -1), u \geq \kappa$ where $e_F(u) = E(Z-u \mid Z  > u)$. 
 \begin{proof}
-    
+\begin{align*}
+    E(Z-u \mid Z > u) &= \frac{E((Z-u)1_{\{ Z > u \}})}{P(Z > u)}\\
+\end{align*}
+We look at the top integral
+\begin{align*}
+    \int_{Z > u} Z dP_z - u \int_{Z>u}dP_Z &= \int_u^\infty x \alpha \kappa^\alpha x^{-\alpha} dx - uP(Z > u) \\
+    &= \alpha \kappa^\alpha \int_u^\infty x^{-\alpha} dx -u P(Z>u)\\
+    &= \alpha \kappa^\alpha u^{-(\alpha -1)}(\alpha -1)^{-1} - u P(Z>u) 
+\end{align*}
+And we divide through with the bottom
+\begin{align*}
+   \frac{\alpha \kappa^\alpha u^{-(\alpha -1)}(\alpha -1)^{-1} - u \kappa^\alpha  u^{-\alpha}}{\kappa^\alpha  u^{-\alpha}} 
+   &= \frac{\alpha}{\alpha - 1}u - u \\
+   &= \frac{u}{\alpha - 1} \hspace{1cm} \forall \alpha > 1
+\end{align*}
 \end{proof}
+\textbf{b)}
+If $Z$ is log-normal with $\mu \in R$ and $\sigma > 0$ then the distribution of $Z$ is 
+\begin{align*}
+    G_Z(z) = \Phi\left( \frac{\log z - \mu}{\sigma} \right), \, z > 0
+\end{align*}
+its given that 
+\begin{align*}
+    e_G(u) = \exp{\mu + \frac{\sigma^2}{2}} \frac{\Phi\left( \frac{(\mu + \sigma^2) - \log u}{\sigma} \right)}{\Phi\left( \frac{\mu - \log u}{\sigma}\right)} - u 
+\end{align*}
+Show that as $u$ increases, 
+\begin{align*}
+    e_G(u) = \frac{\sigma^2 u }{\log u - (\mu + \sigma^2)} (1+ o(1))
+\end{align*}
+\begin{proof}
+
+\begin{align*}
+    e_G(u) &= e^{\mu + \sigma^2/2} \frac{\Phi(a + \sigma)}{\Phi(a)}-u \\
+    &\overset{\text{Mill}}{=} e^{\mu + \sigma^2/2}\frac{\Phi(a + \sigma)}{\Phi(a)} \frac{a}{a+\sigma} -u\\
+    &=e^{\mu + \sigma^2/2} e^{-\frac{1}{2}((a + \sigma)^2 - a^2)} \frac{a}{a + \sigma} - u\\
+    &= e^{\mu + \sigma^2/2} e^{- a\sigma - \frac{1}{2}\sigma^2} \frac{a}{a + \sigma} - u\\
+    &= e^{\mu - a\sigma}\frac{a}{a+\sigma} - u\\
+    &= e^{\mu + \log u - \mu}\frac{a}{a+\sigma}- u \\
+    &= u \frac{a}{a+\sigma} - u \\
+    &= u\left( \frac{a}{a + \sigma}-1\right) \\
+    &= -u\frac{a}{a + \sigma} \\
+    &=-u  \sigma \left( \frac{\mu + \sigma^2 - \log u}{\sigma} \right)^{-1} \\
+    &\overset{Mill}{=} \frac{u\sigma^2}{\log u - (\mu +\sigma^2)}(1 + o(1))
+\end{align*}
 
 
-
-
-
-
+\end{proof}
 
 
 
