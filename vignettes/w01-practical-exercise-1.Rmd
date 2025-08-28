@@ -86,7 +86,12 @@ Which we see aligns nicely.
 
 
 ## b)
+Let $Z_n$ be a sequence of iid r.v. where $Z_n$ is pareto with shape $\alpha = 3$ and scale $\kappa = 100$ for alle n. 
+Verify the asymptotic distribution for $u = 200$ of $\sqrt{n}(\mathbb{e_n(u) - e_F(u)})$
 
+```{r}
+
+```
 
 
 
