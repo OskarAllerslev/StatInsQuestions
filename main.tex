@@ -3,7 +3,7 @@
 \usepackage{amsmath}
 \usepackage[english]{babel}
 \usepackage{amsthm}
-
+\usepackage{amssymb}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 
@@ -53,9 +53,20 @@ Where definition 1.2 (convergence in distribution) has been used at $\dagger$. A
 \subsubsection{Exercise 3}
 Show that $\sqrt{n}(\mathbb{F}^{(n)}(t_1) - F(t_1), \dots, \mathbb{F}^{(n)}(t_M) - F(t_M)) \overset{d}{\rightarrow} \mathcal{N}(0, \Sigma) $
 \begin{proof}
-We recognize that we need to use the Glivenko-Cantelli. We note that $F: R \rightarrow R$ is a non-decreasing, bounded and RCLL.
-
-
+ We apply theorem 1.4 Laplace multivariate CLT:\\
+ We note that accordingo the notation in the theorem we set\\
+ \begin{align*}
+     Z_k &= (1_{(X_k \leq t_1)},\dots , 1_{(X_k \leq t_M)}) \in \mathbb{R}^M
+ \end{align*}
+ Which fulfills the condition since $||Z_i||^2 \leq M \Rightarrow E||Z_i||^2 \leq M < \infty$.
+ \\
+ which gives the desired convergence result. We then look at calculating the covariance matrix. 
+ We look at some entrance in the covacovariancerix:
+ \begin{align*}
+     \text{Cov}(X_i, X_j) &= E((1_{(X_i \leq t_i)} - F(t_i))(1_{(X_j \leq t_j)} - F(t_j))) \\ 
+     &= E(1_{(X_i \leq t_i)}1_{(X_j \leq t_j)} + F(t_i)F(t_j) - F(t_i)1_{(X_j \leq t_j)} -F(t_j)1_{(X_i \leq t_i)})\\
+     &= F(t_i \land t_j) - F(t_j)F(t_i)
+ \end{align*}
 \end{proof}
 
 
@@ -111,6 +122,63 @@ Show that as $u$ increases,
 
 
 \end{proof}
+
+\subsubsection{Exercise 10}
+\textbf{a)}
+\begin{align*}
+    \phi(h)(t) &= - \log(1-h(t)) ,\ h(t) < 1
+\end{align*}
+Find the Hadamard derivative of $\phi$ at a function $f$ in the direction $h$.
+\begin{proof}
+\begin{align*}
+    \frac{\phi(\theta + t_n h_n) - \phi(\theta)}{t_n} &= \frac{-\log(1-(f+t_n h_n)(t)) + \log (1-f(t))}{t_n} \\
+    &= -\log\left( \frac{1-f(t) - t_n h_n(t)}{1-f(t)} \right)t_n^{-1}\\
+    &= -t_n^{-1} \log\left( 1 - \frac{t_n h_n(t)}{1-f(t)}\right) \\
+    &= -t_n^{-1} \frac{-t_n h_n(t)}{1-f(t)} \\
+    &= \frac{h_n(t)}{1-f(t)} \\
+    &\overset{n\rightarrow \infty}{\rightarrow} \frac{h(t)}{1-f(t)}
+\end{align*}
+\end{proof}
+\textbf{b)}
+State and prove a functional limit theorem of $\sqrt{n}(\Delta^{(n)} - \Delta)$ and compute the covariance function.
+\begin{proof}
+
+We want to aaply Theorem 1.26 Functional $\delta$-method. 
+We note for $\theta: [0,1] \subseteq \mathbb{R}_+ \rightarrow \mathbb{E}$ where $\theta = F$ where $F$ denotes the theoretical cdf. Next let $X_n = \frac{1}{n} \sum_{i=1}^n 1_{(Z_i \leq t)}: \Omega \rightarrow [0,1]$.
+First we find:
+\begin{align*}
+    \Delta^{(n)}(t) &= \log n - \log \left( \sum_{i=1}^n 1_{(Z_i > t)}\right) \\
+    &= - \left( - \log n - \log \left( \sum_{i=1}^n 1_{(Z_i > t)}\right) \right)  \\
+    &= - \log\left( \frac{1}{n} \sum_{i=1}^n 1_{(Z_i > t)}\right) \\
+    &= -\log \left( 1 - \frac{1}{n} \sum_{i=1}^n 1_{(Z_i \leq t)} \right)
+\end{align*}
+Then we need to show that $r_n(X_n - \theta) \overset{d}{\rightarrow} X$.
+We are looking at this functional convergence in terms of convergence in functions and not in terms of pointwise convergence. 
+\\ \\
+We then apply Theorem $1.30$ which states $\sqrt{n}(\mathbb{F}^{(n)} - F)\overset{d}{\rightarrow} B \circ F$
+Which we then apply to the Hadamard derivative we obtained in the previous question:
+\begin{align*}
+    \sqrt{n}(\phi(X_n) - \phi(\theta)) &\overset{d}{\rightarrow} \phi_\theta^{'}(X) \\
+    &= \frac{B \circ F}{1-F}
+\end{align*}
+Which is then the final result. We are also asked to compute the covariance which is stated for the Brownian Bridge in a footnote.
+\begin{align*}
+    \text{Cov}\left( \frac{B(F(t)}{1-F(t)},  \frac{B(F(s)}{1-F(s)}\right) &= \frac{F(s\land t) - F(s)F(t)}{(1-F(s))(1-F(t))}
+\end{align*}
+    
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
